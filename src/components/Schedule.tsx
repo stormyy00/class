@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createClass, createSchedule } from "@/server/queries/insert";
 import Form from "./Form";
 import { course, class_ } from "@/types";
-// import Button from "./Button";
+
 
 interface Props {
   courses: course[];
