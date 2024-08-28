@@ -14,16 +14,22 @@ const Protected = ({ children }: props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const checkSession = async () => {
-      const session = await getSession();
-      if (!session || !session.user) {
-        // router.push("/api/auth/signin");
-      } else {
-        setIsAuthenticated(true);
-      }
-      setLoading(false);
+    const checkSession = () => {
+      getSession()
+        .then((session) => {
+          if (!session || !session.user) {
+            // router.push("/api/auth/signin");
+          } else {
+            setIsAuthenticated(true);
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error checking session:", error);
+          setLoading(false);
+        });
     };
-
+  
     checkSession();
   }, [router]);
 

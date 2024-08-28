@@ -1,7 +1,13 @@
 "use client";
 import { useState } from "react";
+import { class_ } from "@/types";
+// import Button from "./Button";
 
-const Form = ({ onSubmit }) => {
+type Prop = {
+  onSubmit: (data: class_) => void;
+};
+
+const Form = ({ onSubmit }: Prop) => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [dayOfWeek, setDayOfWeek] = useState("");
@@ -12,7 +18,7 @@ const Form = ({ onSubmit }) => {
   };
 
   return (
-    <div className="flex w-full  items-center bg-blue-100">
+    <div className="flex w-full items-center gap-3 bg-blue-100">
       <div>
         <input
           type="time"
@@ -47,6 +53,11 @@ const Form = ({ onSubmit }) => {
       <button type="button" onClick={handleSubmit}>
         Add Information
       </button>
+      {/* <Button
+        type="submit"
+        text={"Add to Schedule"}
+        color={"bg-red-600 px-2 my-1"}
+      /> */}
     </div>
   );
 };

@@ -2,34 +2,32 @@
 import React, { useState, useEffect } from "react";
 import { getCourses } from "@/server/queries/queries";
 import Loading from "./Loading";
+import { course } from "@/types";
 
-type Course = {
-  id: number;
-  name: string;
-};
 type Props = {
-  addCourse: (selectedCourses: Course[]) => void;
+  addCourse: (selectedCourses: course[]) => void;
 };
 
 const Courses = ({ addCourse }: Props) => {
-  const [selectedCourses, setSelectedCourses] = useState<Course[]>([]);
-  const [classes, setClasses] = useState<Course[]>([]);
+  const [selectedCourses, setSelectedCourses] = useState<course[]>([]);
+  const [classes, setClasses] = useState<course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const data = await getCourses();
-        setClasses(data);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
-  }, []);
+    const fetchCourses = () => {
+        getCourses()
+          .then((data: course[]) => {
+            setClasses(data);
+          })
+          .catch((error) => {
+            console.error("Error fetching courses:", error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      };
+      fetchCourses();
+    }, []);
 
   if (loading)
     return (
@@ -38,7 +36,7 @@ const Courses = ({ addCourse }: Props) => {
       </div>
     );
 
-  const handleSelectCourse = (course: any) => {
+  const handleSelectCourse = (course: course) => {
     setSelectedCourses((prevSelected) =>
       prevSelected.includes(course)
         ? prevSelected.filter((item) => item !== course)
@@ -66,7 +64,12 @@ const Courses = ({ addCourse }: Props) => {
         </div>
       ))}
 
-      <button onClick={handleSubmit}>Add Classes</button>
+      <button
+        className="rounded-xl bg-green-500 px-5 py-2 hover:opacity-90"
+        onClick={handleSubmit}
+      >
+        Add Classes
+      </button>
     </div>
   );
 };

@@ -91,7 +91,6 @@ export const classes = createTable("class", {
   endTime: time("end_time").notNull(),
   dayOfWeek: varchar("dayOfWeek", { length: 10 }).notNull(),
   location: varchar("location", { length: 100 }).notNull(),
-  currentEnrollment: integer("current_enrollment").default(0).notNull(),
 });
 
 // Enrollments Table

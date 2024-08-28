@@ -1,14 +1,14 @@
-"use client"
-import {useState} from 'react'
-import Schedule from './Schedule'
-import Courses from './Courses'
+"use client";
+import { useState } from "react";
+import Schedule from "./Schedule";
+import Courses from "./Courses";
+import { course } from "@/types";
 
-const Body = ()=> {
+const Body = () => {
   // const courseList = await db.select().from(courses);
-  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState<course[]>([]);
 
-
-  const handleAddCourse = (courses) => {
+  const handleAddCourse = (courses: course[]) => {
     setSelectedCourses(courses);
   };
 
@@ -20,4 +20,4 @@ const Body = ()=> {
   );
 };
 
-export default Body
+export default Body;
