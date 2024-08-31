@@ -60,7 +60,7 @@ const Dashboard = ({ title, columns, page, tags, Dropdown, empty }) => {
     "select",
     getRowModel().rows.filter((row) => row.getIsSelected()),
   );
-  
+
   return (
     <div className="flex h-full w-full items-center justify-center md:w-9/12">
       <title>{title}</title>

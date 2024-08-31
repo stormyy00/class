@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { flexRender } from "@tanstack/react-table";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";

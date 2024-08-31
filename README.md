@@ -8,13 +8,19 @@
 ![NextAuth](https://img.shields.io/badge/NextAuth-000000?style=for-the-badge&logo=nextauth&logoColor=white)
 ![Drizzle](https://img.shields.io/badge/Drizzle-000000?style=for-the-badge&logo=drizzle&logoColor=#84A438)
 
- `npm i`.
- `npm run dev`.
+`npm i`.
+`npm run dev`.
 
-## What's next? 
-   # [] Add types for table
-   # [] Revamp Classes UI
-   # [] DB queries for each user
-   # [] add new class feature
-   # [] fix themes
-   # [] add Quality of life features
+## What's next?
+
+# [] Add types for table
+
+# [] Revamp Classes UI
+
+# [] DB queries for each user
+
+# [] add new class feature
+
+# [] fix themes
+
+# [] add Quality of life features

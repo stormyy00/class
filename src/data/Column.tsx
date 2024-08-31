@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import Checkbox from "@/components/Checkbox";
 import { ColumnDef } from "@tanstack/react-table";
-// import {checkbox} from "@/types/index" 
+// import {checkbox} from "@/types/index"
 
 type Col = {
   name: string;
@@ -12,7 +12,7 @@ type Col = {
 
 const generateSelect = () => ({
   id: "select",
-  meta: {width: "w-1/12"},
+  meta: { width: "w-1/12" },
   header: ({ table }) => (
     <Checkbox
       toggle={table.getIsAllRowsSelected()}
@@ -27,39 +27,38 @@ const generateSelect = () => ({
   ),
 });
 
-
 export const COLUMNS: ColumnDef<Col, string>[] = [
-    generateSelect(), 
-    {
-      accessorKey: "name",  
-      header: "Name",     
-      meta: { width: "w-3/12" }, 
-      enableColumnFilter: true,   
-      filterFn: "includesString", 
-      cell: (props) => <div>{props.getValue()}</div>, 
-    },
-    {
-      accessorKey: "code", 
-      header: "Code",
-      meta: { width: "w-3/12" },
-      filterFn: "includesString",
-      cell: (props) => <div>{props.getValue()}</div>,
-    },
-    {
-      accessorKey: "description",  
-      header: "Description",
-      meta: { width: "w-3/12" },
-      filterFn: "includesString",
-      cell: (props) => <div>{props.getValue()}</div>,
-    },
-    {
-      accessorKey: "credits",  
-      header: "Credits",
-      meta: { width: "w-3/12" },
-      cell: (props) => <div>{props.getValue()}</div>,
-    },
-  ];
-  
+  generateSelect(),
+  {
+    accessorKey: "name",
+    header: "Name",
+    meta: { width: "w-3/12" },
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    cell: (props) => <div>{props.getValue()}</div>,
+  },
+  {
+    accessorKey: "code",
+    header: "Code",
+    meta: { width: "w-3/12" },
+    filterFn: "includesString",
+    cell: (props) => <div>{props.getValue()}</div>,
+  },
+  {
+    accessorKey: "description",
+    header: "Description",
+    meta: { width: "w-3/12" },
+    filterFn: "includesString",
+    cell: (props) => <div>{props.getValue()}</div>,
+  },
+  {
+    accessorKey: "credits",
+    header: "Credits",
+    meta: { width: "w-3/12" },
+    cell: (props) => <div>{props.getValue()}</div>,
+  },
+];
+
 // import { createColumnHelper } from "@tanstack/react-table";
 // import Checkbox from "@/components/Checkbox";
 // const columnHelper = createColumnHelper<any>();
@@ -81,11 +80,10 @@ export const COLUMNS: ColumnDef<Col, string>[] = [
 //           color="bg-green-500"
 //         />
 //       ),
-//       meta: { width: "w-1/12" }, 
+//       meta: { width: "w-1/12" },
 //     });
 //   };
-  
-  
+
 // export const columns = [
 //     createSelectionColumn(),
 //     columnHelper.accessor("name", {

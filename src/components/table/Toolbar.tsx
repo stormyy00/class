@@ -22,21 +22,25 @@ const Toolbar = ({
   searchParams,
   setMeta,
   meta,
-  courses
+  courses,
 }: ToolbarProps) => {
-    const { toast } = useToast();
-    const { setSelectedCourses } = useSelectedCourses();
+  const { toast } = useToast();
+  const { setSelectedCourses } = useSelectedCourses();
   const selectedRows = getFilteredSelectedRowModel();
   const [search, setSearch] = useState({
     search: "name",
   });
-//   console.log("inpiut",  meta().rows.filter((row) => row.getIsSelected()),)
+  //   console.log("inpiut",  meta().rows.filter((row) => row.getIsSelected()),)
   const handleChange = () => {
-    console.log("OnClick",  meta().rows.filter((row) => row.getIsSelected()),)
-    const selectedData = meta().rows.filter(row => row.getIsSelected()).map(row => row.original);
+    console.log(
+      "OnClick",
+      meta().rows.filter((row) => row.getIsSelected()),
+    );
+    const selectedData = meta()
+      .rows.filter((row) => row.getIsSelected())
+      .map((row) => row.original);
     setSelectedCourses(selectedData);
-
-  }
+  };
 
   const rows = selectedRows.rows.map(({ original }) => original);
 
@@ -50,7 +54,7 @@ const Toolbar = ({
     <div className="my-2 flex w-full gap-3">
       <button
         onClick={() => {
-        handleChange();
+          handleChange();
           toast({
             description: "Courses Added",
           });

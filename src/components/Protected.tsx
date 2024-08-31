@@ -29,17 +29,21 @@ const Protected = ({ children }: props) => {
           setLoading(false);
         });
     };
-  
+
     checkSession();
   }, [router]);
 
   if (loading) {
-    return <div><Loading/></div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="h-screen flex justify-center items-center text-2xl font-semibold text-center">
+      <div className="flex h-screen items-center justify-center text-center text-2xl font-semibold">
         This Page is Protected
         <br />
         Please sign in

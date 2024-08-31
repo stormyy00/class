@@ -7,10 +7,10 @@ export interface course {
 }
 
 export interface class_ {
-    startTime: string;
-    endTime: string;
-    dayOfWeek: string;
-    location: string;
+  startTime: string;
+  endTime: string;
+  dayOfWeek: string;
+  location: string;
 }
 
 // export type checkbox = {

@@ -1,6 +1,5 @@
-"use server"
+"use server";
 import { db } from "../db";
-
 
 export async function getCourses() {
   const classes = db.query.courses.findMany({
@@ -35,13 +34,12 @@ export async function getCourses() {
 //           dayOfWeek,
 //           location,
 //         })
-//         .returning<{ id: string }[]>(); 
-  
+//         .returning<{ id: string }[]>();
 
 //       if (result.length > 0) {
-//         return result[0].id; 
+//         return result[0].id;
 //       }
-  
+
 //       throw new Error('Failed to create class');
 //     } catch (error) {
 //       console.error('Error creating class:', error);
@@ -54,14 +52,14 @@ export async function getCourses() {
 //     scheduleName,
 //   }:{
 //     classId: string,
-//     scheduleName: string, 
+//     scheduleName: string,
 //   }) {
 //     const session = await getServerSession(authOptions);
-  
+
 //     if (!session?.user?.id) {
 //       throw new Error('User not authenticated');
 //     }
-    
+
 //     const userId = session.user.id;
 //     console.log('Creating schedule with:', { userId, classId, scheduleName });
 
@@ -76,7 +74,7 @@ export async function getCourses() {
 //         scheduleName,
 //       });
 //   }
-  
+
 // export async function createSchedule({ courseId, classId, scheduleName }) {
 
 //     const session = await getServerSession(authOptions);
@@ -84,13 +82,13 @@ export async function getCourses() {
 //     if (!session?.user?.id) {
 //       throw new Error('User not authenticated');
 //     }
-  
+
 //     const userId = session.user.id;
-    
+
 //     await db.insert(schedules).values({
 //       userId,
 //       classId,
-//       scheduleName 
+//       scheduleName
 //     });
 //   }
 
@@ -103,13 +101,13 @@ export async function getCourses() {
 //     scheduleName,
 //   }) {
 //     const session = await getServerSession(authOptions);
-  
+
 //     if (!session?.user?.id) {
 //       throw new Error('User not authenticated');
 //     }
-  
+
 //     const userId = session.user.id;
-  
+
 //     // Insert the new class into the classes table
 //     const newClass = await db.insert(classes).values({
 //       courseId,
@@ -118,9 +116,9 @@ export async function getCourses() {
 //       dayOfWeek,
 //       location,
 //     }).returning('id');
-  
+
 //     const classId = newClass.id;
-  
+
 //     // Insert the schedule using the newly created classId
 //     await db.insert(schedules).values({
 //       userId,
@@ -128,5 +126,3 @@ export async function getCourses() {
 //       scheduleName,
 //     });
 //   }
-
-

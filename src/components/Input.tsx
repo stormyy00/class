@@ -1,20 +1,18 @@
-
 import { XCircle } from "lucide-react";
 
-
 type props = {
-    label: string;
-    object: Record<string, any>;
-    setObject: (updatedObject: Record<string, any>) => void;
-    clear?: boolean;
-    value?: string;
-    showLabel?: boolean;
-    maxLength?: number;
-    placeholder?: string;
-    onChangeFn?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    clearFn?: () => void;
-    classes?: string;
-  };
+  label: string;
+  object: Record<string, any>;
+  setObject: (updatedObject: Record<string, any>) => void;
+  clear?: boolean;
+  value?: string;
+  showLabel?: boolean;
+  maxLength?: number;
+  placeholder?: string;
+  onChangeFn?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  clearFn?: () => void;
+  classes?: string;
+};
 
 const Input = ({
   object,
@@ -40,12 +38,12 @@ const Input = ({
           maxLength={maxLength}
           placeholder={placeholder}
           type="text"
-          className="w-full bg-transparent px-2 py-1 font-poppins text-base outline-none"
+          className="font-poppins w-full bg-transparent px-2 py-1 text-base outline-none"
           onChange={onChangeFn}
         />
         {clear && (
           <XCircle
-            className="mr-2 text-xl text-hackathon-gray-300 hover:cursor-pointer hover:text-hackathon-gray-200"
+            className="text-hackathon-gray-300 hover:text-hackathon-gray-200 mr-2 text-xl hover:cursor-pointer"
             onClick={clearFn}
             data-cy={`${label}-clear-input`}
           />

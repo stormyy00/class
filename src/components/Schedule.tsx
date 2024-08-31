@@ -80,20 +80,26 @@ const Schedule = () => {
           onChangeFn={(e) => setName(e.target.value)}
           clearFn={() => setName("")}
         />
-{selectedCourses.length != 0 && (
-<div>
-          <label className="bg-gradient-to-r from-gray-600 to-blue-500 bg-clip-text text-transparent text-4xl" htmlFor="course">Selected Courses</label>
-          <div className="flex flex-col">
-            
-            {selectedCourses.map((course) => (
-              <div key={course.id} className="my-.5 border-2 border-black">
-                {course.name} ({course.code})
-                <Form onSubmit={(data) => handleClassSubmit(course.id, data)} />
-              </div>
-            ))}
+        {selectedCourses.length != 0 && (
+          <div>
+            <label
+              className="bg-gradient-to-r from-gray-600 to-blue-500 bg-clip-text text-4xl text-transparent"
+              htmlFor="course"
+            >
+              Selected Courses
+            </label>
+            <div className="flex flex-col">
+              {selectedCourses.map((course) => (
+                <div key={course.id} className="my-.5 border-2 border-black">
+                  {course.name} ({course.code})
+                  <Form
+                    onSubmit={(data) => handleClassSubmit(course.id, data)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-)}
+        )}
         <button
           type="submit"
           className="rounded-xl bg-blue-600 px-4 py-2 text-white hover:opacity-90"
