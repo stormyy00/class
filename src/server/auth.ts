@@ -7,7 +7,7 @@ import {
 import { type Adapter } from "next-auth/adapters";
 import Googleprovider from "next-auth/providers/google";
 
-import { env } from "@/env";
+import { env } from "@/utils/env";
 import { db } from "@/server/db";
 import {
   accounts,

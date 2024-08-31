@@ -12,3 +12,10 @@ export interface class_ {
     dayOfWeek: string;
     location: string;
 }
+
+// export type checkbox = {
+//     toggle: boolean;
+//     text: string;
+//     color?: string;
+//     onClick?: () => {};
+//   };
