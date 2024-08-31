@@ -4,7 +4,10 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
-import Navigation from "@/components/Navigation"
+import Navigation from "@/components/Navigation";
+import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/hooks/theme-provider";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Course",
@@ -21,12 +24,21 @@ const RootLayout = async ({ children }: Props) => {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-      <div className="h-full w-full">
-        <Session session={session}>
-          <Navigation/>
-          {children}
-          </Session>
-          </div>
+        <div className="h-full w-full">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Session session={session}>
+              <Navigation />
+              <Toaster />
+              {children}
+            </Session>
+            <Footer />
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );

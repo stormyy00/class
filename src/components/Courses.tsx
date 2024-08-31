@@ -14,20 +14,20 @@ const Courses = ({ addCourse }: Props) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-     const fetchCourses = () => {
-    getCourses()
-      .then((data: course[]) => {
-        setClasses(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching courses:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-  fetchCourses();
-}, []);
+    const fetchCourses = () => {
+      getCourses()
+        .then((data: course[]) => {
+          setClasses(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching courses:", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+    fetchCourses();
+  }, []);
 
   if (loading)
     return (
