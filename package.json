@@ -12,7 +12,10 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "format": "prettier --write ."
+    "format": "npx prettier --write .",
+    "check": "npx prettier --check .",
+    "eslint": "npx eslint . --ext js --ext jsx",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.1.0",

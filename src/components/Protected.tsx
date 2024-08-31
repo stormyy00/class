@@ -26,10 +26,10 @@ const Protected = ({ children }: props) => {
         })
         .catch((error) => {
           console.error("Error checking session:", error);
+
           setLoading(false);
         });
     };
-
     checkSession();
   }, [router]);
 
