@@ -1,11 +1,45 @@
 "use server";
 import { db } from "../db";
+import { eq } from "drizzle-orm";
+import { users, schedules, classes, courses } from "../db/schema";
 
 export async function getCourses() {
   const classes = db.query.courses.findMany({
     orderBy: (model, { asc }) => asc(model.code),
   });
   return classes;
+}
+
+export async function user(userId: string) {
+  const userExists = await db
+    .select({ id: users.id })
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1);
+
+  if (userExists.length === 0) {
+    throw new Error("User not found");
+  }
+
+  const userSchedule = await db
+    .select({
+      userId: schedules.userId,
+      scheduleName: schedules.scheduleName,
+      classId: schedules.classId,
+      courseName: courses.name,
+      courseCode: courses.code,
+      classStartTime: classes.startTime,
+      classEndTime: classes.endTime,
+      classDayOfWeek: classes.dayOfWeek,
+      classLocation: classes.location,
+    })
+    .from(schedules)
+    .innerJoin(users, eq(users.id, schedules.userId))
+    .innerJoin(classes, eq(classes.id, schedules.classId))
+    .innerJoin(courses, eq(courses.id, classes.courseId))
+    .where(eq(schedules.userId, userId));
+
+  return userSchedule;
 }
 
 // interface ClassResult {
