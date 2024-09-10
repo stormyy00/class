@@ -23,9 +23,10 @@ export async function user(userId: string) {
 
   const userSchedule = await db
     .select({
-      userId: schedules.userId,
+      scheduleId: schedules.id,
       scheduleName: schedules.scheduleName,
-      classId: schedules.classId,
+      userId: schedules.userId,
+      classId: classes.id,
       courseName: courses.name,
       courseCode: courses.code,
       classStartTime: classes.startTime,
@@ -37,8 +38,19 @@ export async function user(userId: string) {
     .innerJoin(users, eq(users.id, schedules.userId))
     .innerJoin(classes, eq(classes.id, schedules.classId))
     .innerJoin(courses, eq(courses.id, classes.courseId))
-    .where(eq(schedules.userId, userId));
-
+    .where(eq(schedules.userId, userId))
+    .groupBy(
+      schedules.id,
+      schedules.scheduleName,
+      schedules.userId,
+      classes.id,
+      courses.name,
+      courses.code,
+      classes.startTime,
+      classes.endTime,
+      classes.dayOfWeek,
+      classes.location,
+    );
   return userSchedule;
 }
 
