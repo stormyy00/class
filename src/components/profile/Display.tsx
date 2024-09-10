@@ -27,6 +27,7 @@ const Display = () => {
 
       try {
         const schedule = await user(session.user.id);
+        console.log(schedule);
         toast({ title: "✅ Schedules Fetched!" });
         setUserData(schedule);
       } catch (err) {
@@ -61,7 +62,7 @@ const Display = () => {
               className="flex flex-col border border-black text-center"
               key={scheduleItem.classId}
             >
-              <p className="text-2xl font-semibold">
+              <p className="text-xl font-semibold">
                 {scheduleItem.scheduleName}
               </p>
               <div>

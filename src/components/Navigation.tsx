@@ -1,9 +1,19 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import { LogOut, User } from "lucide-react";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Mode from "./Mode";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+} from "./ui/dropdown-menu";
+
 const Navigation = () => {
   const { data: session } = useSession();
   return (
@@ -11,36 +21,48 @@ const Navigation = () => {
       <div className="flex h-[10vh] w-full items-center justify-between bg-blue-700 text-white">
         <div className="mx-3 text-xl">
           <Link href={"/"}> Home </Link>
-          <Link href={"/profile"}> Profile </Link>
         </div>
         <div className="flex">
           <div className="mx-3 flex items-center gap-5">
-            {!session ? (
-              <button
-                className="bg-red-600 px-10 py-2"
-                onClick={() => signIn()}
-              >
-                Sign In
-              </button>
-            ) : (
-              <button
-                className="bg-blue-600 px-10 py-2"
-                onClick={() => signOut()}
-              >
-                Sign Out
-              </button>
-            )}
             <Mode />
           </div>
           <div className="mx-5">
-            {session ? (
-              <div className="text-center text-white">
-                Welcome, <br />
-                {session.user.name}
-              </div>
-            ) : (
-              <div>Default icon </div>
-            )}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-white">
+                  {session ? (
+                    <>
+                      Welcome, <br />
+                      {session.user.name}
+                    </>
+                  ) : (
+                    "Sign In"
+                  )}
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {session ? (
+                  <>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <User className="mr-2 h-4 w-4" />
+                        <Link href={"profile"}>Profile</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => signOut()}>
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>Log out</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </>
+                ) : (
+                  <DropdownMenuItem onClick={() => signIn()}>
+                    <span>Sign In</span>
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>

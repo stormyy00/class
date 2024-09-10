@@ -2,6 +2,7 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  const response = NextResponse.next();
   const protectedPaths = ["/api"];
   const excludedPaths = ["/api/download", "/api/auth"];
   const isProtectedRoute = protectedPaths.some((path) =>
@@ -22,7 +23,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
