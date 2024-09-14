@@ -53,8 +53,8 @@ const Display = () => {
   if (error) return <div className="text-3xl text-red-600">Error: {error}</div>;
 
   return (
-    <div className="flex w-full flex-col items-center gap-5">
-      <div className="text-3xl">{session?.user?.name} Schedules</div>
+    <div className="flex h-screen w-full flex-col items-center gap-5">
+      <div className="text-3xl"> My Schedules</div>
       {userData && userData.length > 0 ? (
         <div className="grid grid-cols-4">
           {userData.map((scheduleItem) => (

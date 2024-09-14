@@ -17,7 +17,7 @@ import {
 const Navigation = () => {
   const { data: session } = useSession();
   return (
-    <div className="sticky top-0 z-10 drop-shadow">
+    <div className="sticky top-0 z-10 shadow-md drop-shadow">
       <div className="flex h-[10vh] w-full items-center justify-between bg-blue-700 text-white">
         <div className="mx-3 text-xl">
           <Link href={"/"}> Home </Link>
