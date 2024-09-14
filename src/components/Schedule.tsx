@@ -6,6 +6,7 @@ import { course, class_ } from "@/types";
 import { useToast } from "@/hooks/use-toast";
 import Input from "./Input";
 import { useSelectedCourses } from "./Context";
+import { getSession } from "next-auth/react";
 // interface Props {
 //   courses: course[];
 // }
@@ -44,11 +45,18 @@ const Schedule = () => {
             location: data.location,
           });
           console.log(classId);
-          await createSchedule({
-            classId,
-            scheduleName: name,
-          });
-          toast({ title: "✅ Schedule created successfully!" });
+
+          const session = await getSession();
+
+          if (session && session.user) {
+            await createSchedule({
+              classId,
+              scheduleName: name,
+            });
+            toast({ title: "✅ Schedule created successfully!" });
+          } else {
+            toast({ title: "❌ You must be signed in to add a schedule" });
+          }
         }),
       );
     }

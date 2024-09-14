@@ -4,9 +4,7 @@ import Body from "@/components/Body";
 export default async function HomePage() {
   return (
     <div>
-      <Protected>
-        <Body />
-      </Protected>
+      <Body />
     </div>
   );
 }
