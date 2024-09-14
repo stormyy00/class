@@ -6,6 +6,7 @@ import Courses from "./Courses";
 import Dashboard from "./table/Dashboard";
 import { COLUMNS } from "@/data/Column";
 import { SelectedCoursesProvider } from "./Context";
+import Create from "./Create";
 
 const Body = () => {
   // const courseList = await db.select().from(courses);
@@ -28,6 +29,7 @@ const Body = () => {
           Dropdown={null}
           empty="No data available."
         />
+        <Create />
       </div>
     </SelectedCoursesProvider>
   );
