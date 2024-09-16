@@ -9,7 +9,7 @@ const Frame = ({ getIsSelected, getVisibleCells, Dropdown, original }) => {
   return (
     <>
       <div
-        className={`flex items-center border-b-[1px] border-gray-400 px-3 py-2 ${
+        className={`flex items-center border-b-[1px] border-gray-400 px-3 py-2 text-black ${
           getIsSelected() ? "bg-green-100" : "bg-white"
         }`}
         data-cy={original.uid}

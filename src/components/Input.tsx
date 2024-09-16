@@ -31,7 +31,7 @@ const Input = ({
     <div className={`flex items-center ${classes}`}>
       {showLabel && <p className="my-0 mr-2 text-lg font-extrabold">{label}</p>}
 
-      <div className="my-1 flex w-full items-center rounded-md bg-gray-200">
+      <div className="my-1 flex w-full items-center rounded-md bg-gray-200 text-black">
         <input
           data-cy={`${label}-input`}
           value={value}
@@ -43,7 +43,7 @@ const Input = ({
         />
         {clear && (
           <XCircle
-            className="text-hackathon-gray-300 hover:text-hackathon-gray-200 mr-2 text-xl hover:cursor-pointer"
+            className="hover:text-200 mr-2 text-xl text-gray-500 hover:cursor-pointer"
             onClick={clearFn}
             data-cy={`${label}-clear-input`}
           />
