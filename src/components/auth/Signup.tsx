@@ -37,24 +37,27 @@ const Signup = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
     setErrorMessage(null);
-
+    console.log("Sign Up ", data);
     try {
       const formData = new FormData();
       formData.append("full-name", data.full_name);
       formData.append("email", data.email);
       formData.append("password", data.password);
-
+      console.log(formData);
       // Use credentials provider signIn
       const response = await signIn("credentials", {
         redirect: false,
+        name: data.full_name,
         email: data.email,
         password: data.password,
       });
+      // const response = await signupUser(formData);
+      console.log(response);
 
       if (response?.error) {
         setErrorMessage(response.error);
       } else {
-        toast({ title: "Account created successfully, signing you in..." });
+        toast({ title: "Account created successfully" });
         router.push("/");
       }
     } catch (error) {

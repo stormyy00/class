@@ -38,12 +38,16 @@ const Signin = () => {
       const formData = new FormData();
       formData.append("email", data.email);
       formData.append("password", data.password);
+      console.log(formData);
 
       const response = await signIn("credentials", {
-        redirect: false, // Prevents automatic redirects to dashboard or another page
+        redirect: true, // Prevents automatic redirects to dashboard or another page
+        callbackUrl: "/",
         email: data.email,
         password: data.password,
       });
+      // const response = await signinUser(formData);
+      console.log(response);
       if (response?.error) {
         setErrorMessage(response.error);
       } else {
