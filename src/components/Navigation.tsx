@@ -57,8 +57,8 @@ const Navigation = () => {
                     </DropdownMenuGroup>
                   </>
                 ) : (
-                  <DropdownMenuItem onClick={() => signIn()}>
-                    <span>Sign In</span>
+                  <DropdownMenuItem>
+                    <Link href={"/signin"}>Sign In</Link>
                   </DropdownMenuItem>
                 )}
               </DropdownMenuContent>
