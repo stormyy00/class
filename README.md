@@ -58,6 +58,14 @@ To run the project locally:
    ```
 2. Visit `http://localhost:3000` in your browser.
 
+To visit Drizzle Studio:
+
+1. Start the development server:
+   ```sh
+   npm run db:studio
+   ```
+2. Visit `https://local.drizzle.studio` in your browser.
+
 ### Recommended Extensions
 
 - Prettier
