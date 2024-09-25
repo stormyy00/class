@@ -1,6 +1,5 @@
 # T1 Planner
 
-
 ### Built With
 
 ![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
@@ -11,7 +10,6 @@
 ![NextAuth](https://img.shields.io/badge/NextAuth-000000?style=for-the-badge&logo=nextauth&logoColor=white)
 ![Drizzle](https://img.shields.io/badge/Drizzle-000000?style=for-the-badge&logo=drizzle&logoColor=#84A438)
 
-
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -21,7 +19,6 @@ To get a local copy up and running follow these simple steps.
 - Node
 
   This project runs on Node.js Version 20.10.0 and higher. Please ensure you have Node.js installed via the [official website](https://nodejs.org/en).
-
 
 ### Installation
 

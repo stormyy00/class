@@ -37,13 +37,13 @@ const Signup = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
     setErrorMessage(null);
-    console.log("Sign Up ", data);
+    // console.log("Sign Up ", data);
     try {
       const formData = new FormData();
       formData.append("full-name", data.full_name);
       formData.append("email", data.email);
       formData.append("password", data.password);
-      console.log(formData);
+      // console.log(formData);
       // Use credentials provider signIn
       const response = await signIn("credentials", {
         redirect: false,
@@ -52,7 +52,7 @@ const Signup = () => {
         password: data.password,
       });
       // const response = await signupUser(formData);
-      console.log(response);
+      // console.log(response);
 
       if (response?.error) {
         setErrorMessage(response.error);

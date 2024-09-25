@@ -11,7 +11,7 @@ const Header = () => {
       <Image
         width={125}
         height={125}
-        src={session.user.image}
+        src={session?.user?.image || ""}
         className="overflow-hidden rounded-full"
         alt="Picture of user's profile"
       />
