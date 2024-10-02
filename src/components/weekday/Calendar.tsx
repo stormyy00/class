@@ -7,10 +7,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import Event from "./Event";
 import CustomToolbar from "./Toolbar";
 import Modal from "./Modal";
-import { getCourses } from "@/server/queries/queries";
-import { useSession } from "next-auth/react";
-import { useToast } from "@/hooks/use-toast";
-
 const mLocalizer = momentLocalizer(moment);
 
 export const mockEvents = [
@@ -39,8 +35,8 @@ export const mockEvents = [
   {
     id: 3,
     title: "Code Review",
-    //   start: new Date(2024, 8, 18, 14, 0), // January 4, 2023, 2:00 PM
-    //   end: new Date(2024, 8, 18, 15, 0),   // January 4, 2023, 3:00 PM
+    start: new Date(2024, 8, 18, 14, 0), // January 4, 2023, 2:00 PM
+    end: new Date(2024, 8, 18, 15, 0), // January 4, 2023, 3:00 PM
     state: {
       preferred: false,
       available: false,
@@ -48,51 +44,10 @@ export const mockEvents = [
     },
   },
 ];
-
-const Week = ({ data }) => {
-  const [schedule, setSchedule] = useState(data);
-  const [date, setDate] = useState(new Date());
-  const [modalEvent, setModalEvent] = useState(null);
-  const [currentCourse, setCurrentCourse] = useState(null);
+const CalendarEvents = () => {
   const [eventStates, setEventStates] = useState({});
-  const courseList = [];
-
-  console.log("Schedule", schedule);
-
-  const handleEventClick = (e, id, status) => {
-    console.log(`Event ${id} status changed to ${status}`);
-  };
-  const getMockDayOfWeekDate = (dayOfWeek, startTime, endTime) => {
-    const mockDates = {
-      mon: "2024-09-23",
-      tue: "2024-09-24",
-      wed: "2024-09-25",
-      thu: "2024-09-26",
-      fri: "2024-09-27",
-      tuth: "2024-09-24",
-    };
-
-    const startDate = mockDates[dayOfWeek] || "2024-09-23";
-    return {
-      start: moment(startDate + "T" + startTime).toDate(),
-      end: moment(startDate + "T" + endTime).toDate(),
-    };
-  };
-
-  const mappedEvents = schedule.map((item) => {
-    const { start, end } = getMockDayOfWeekDate(
-      item.classDayOfWeek,
-      item.classStartTime,
-      item.classEndTime,
-    );
-    return {
-      title: `${item.courseCode} - ${item.courseName}`,
-      start: start,
-      end: end,
-      location: item.classLocation,
-      id: item.classId,
-    };
-  });
+  const [modalEvent, setModalEvent] = useState(null);
+  const [currentCourse, setCurrentCourse] = useState("CS009A");
 
   return (
     <section className="my-[6vh] flex w-full flex-col items-center justify-center">
@@ -100,17 +55,15 @@ const Week = ({ data }) => {
         <div className="relative h-[90vh] w-full">
           <Calendar
             className="m-0 w-full p-0"
-            events={mappedEvents}
+            events={mockEvents}
             localizer={mLocalizer}
-            defaultDate={new Date()}
-            dayLayoutAlgorithm={"no-overlap"}
-            defaultView="work_week"
-            views={["work_week", "day"]}
+            defaultDate={new Date(2024, 8, 16)} // Update to a valid default date
+            defaultView={"week"}
+            views={["day", "week"]}
             min={new Date(0, 0, 0, 8, 0, 0)}
             max={new Date(0, 0, 0, 22, 0, 0)}
+            dayLayoutAlgorithm={"no-overlap"}
             components={{
-              event: ({ event }) => <Event event={event} />,
-
               toolbar: (props) => (
                 <CustomToolbar
                   {...props}
@@ -120,17 +73,27 @@ const Week = ({ data }) => {
                   setModalEvent={setModalEvent}
                 />
               ),
+              event: Event, // Ensure you are using the Event component correctly
+            }}
+            formats={{
+              dayFormat: (date, culture, localizer) =>
+                localizer.format(date, "dddd", culture),
             }}
             onSelectEvent={(event) => {
               setModalEvent(event);
             }}
           />
         </div>
-
-        {modalEvent && <Modal event={modalEvent} setEvent={setModalEvent} />}
+        {modalEvent && (
+          <Modal
+            event={modalEvent}
+            setEvent={setModalEvent}
+            course={currentCourse}
+          />
+        )}
       </div>
     </section>
   );
 };
 
-export default Week;
+export default CalendarEvents;
