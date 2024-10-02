@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/hooks/theme-provider";
 import Footer from "@/components/Footer";
+import { ReactQueryClientProvider } from "@/utils/react-query";
 
 export const metadata: Metadata = {
   title: "Course",
@@ -22,25 +23,27 @@ type Props = {
 const RootLayout = async ({ children }: Props) => {
   const session = await getServerSession(authOptions);
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-        <div className="h-full w-full">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Session session={session}>
-              <Navigation />
-              <Toaster />
-              {children}
-            </Session>
-            <Footer />
-          </ThemeProvider>
-        </div>
-      </body>
-    </html>
+    <ReactQueryClientProvider>
+      <html lang="en" className={`${GeistSans.variable}`}>
+        <body>
+          <div className="h-full w-full">
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Session session={session}>
+                <Navigation />
+                <Toaster />
+                {children}
+              </Session>
+              <Footer />
+            </ThemeProvider>
+          </div>
+        </body>
+      </html>
+    </ReactQueryClientProvider>
   );
 };
 

@@ -13,7 +13,7 @@ import { getSession } from "next-auth/react";
 const Schedule = () => {
   //   console.log("Schedule", courses);
   const { selectedCourses } = useSelectedCourses();
-  console.log("incoming", selectedCourses);
+  // console.log("incoming", selectedCourses);
   const { toast } = useToast();
   //   const [selectedCourses, setSelectedCourses] = useState([]);
   const [name, setName] = useState<string>("");
@@ -44,7 +44,7 @@ const Schedule = () => {
             dayOfWeek: data.dayOfWeek,
             location: data.location,
           });
-          console.log(classId);
+          // console.log(classId);
 
           const session = await getSession();
 
